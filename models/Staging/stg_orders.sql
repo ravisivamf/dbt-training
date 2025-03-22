@@ -7,6 +7,7 @@ o.shipmode,
 o.ordercostprice,
 o.ordersellingprice,
 o.ORDERSELLINGPRICE - o.ORDERCOSTPRICE as orderprofit,
+{{ markup('ORDERSELLINGPRICE', 'ORDERCOSTPRICE') }} as markup,
 --from raw customer
 c.customerid,
 c.customername,
@@ -22,3 +23,4 @@ join {{ ref('raw_customer') }} as c
 on o.customerid= c.customerid
 join {{ ref('raw_product') }} as p
 on o.productid = p.productid
+{{ limit_data_in_dev('Furniture')}}
